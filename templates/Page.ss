@@ -1,4 +1,4 @@
-<% if RenderTemplate %><<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if !IE]><!-->
 <html lang="$ContentLocale">
 <!--<![endif]-->
@@ -12,12 +12,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	$MetaTags(false)
+  <% require themedCSS('layout') %>
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<link rel="shortcut icon" href="$ThemeDir/images/favicon.ico" />
 </head>
-<body class="$ClassName>
+<body class="$ClassName">
 <% include Header %>
 <div class="main" role="main">
 	<div class="inner typography line">
@@ -29,4 +30,4 @@
 
 
 </body>
-</html><% else %> $Layout <% end_if %>
+</html>

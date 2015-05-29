@@ -1,6 +1,8 @@
-<section class="$ClassName" id="$URLSegment">
-    <div class="anchor" id="$Anchor"></div>
-    <div class="vpos">
+<section>
+
+    <div class="content">
         $Content
     </div>
 </section>
+
+$Form
