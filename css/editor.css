@@ -1,0 +1,8 @@
+/**
+ * This support file is used to style the WYSIWYG editor in the CMS
+ */
+@import url(typography.css);
+/* line 6, ../sass/editor.scss */
+body.mceContentBody {
+  font-size: 13px;
+}
