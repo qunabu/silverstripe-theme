@@ -70,64 +70,20 @@ html, body {
   height: 100%;
 }
 
-@font-face {
-  font-family: 'cafe';
-  src: url("../fonts/cafe.eot");
-  /* IE9 Compat Modes */
-  src: url("../fonts/cafe.eot?#iefix") format("embedded-opentype"), url("../fonts/cafe.woff") format("woff"), url("../fonts/cafe.ttf") format("truetype"), url("../fonts/cafe.svg#6865896284a8668b08462cc86badfa31") format("svg");
-  /* Legacy iOS */
-  font-style: normal;
-  font-weight: normal;
-}
-@font-face {
-  font-family: 'Cardenio Modern';
-  src: url("../fonts/Cardenio Modern Bold10_pl.eot");
-  /* IE9 Compat Modes */
-  src: url("../fonts/Cardenio Modern Bold10_pl.eot?#iefix") format("embedded-opentype"), url("../fonts/Cardenio Modern Bold10_pl.woff") format("woff"), url("../fonts/Cardenio Modern Bold10_pl.ttf") format("truetype"), url("../fonts/Cardenio Modern Bold10_pl.svg#1d99477424e13256b571c8eacdec7daf") format("svg");
-  /* Legacy iOS */
-  font-style: normal;
-  font-weight: normal;
-}
-/* BASE TYPOGRPHY */
-/* These are the default styles for the Simple theme */
-/* line 32, ../sass/typography.scss */
-body {
+/* line 2, ../sass/typography.scss */
+body, .typography {
   font-size: 13px;
-  /* This overrides the browsers default font size */
-  line-height: 20px;
-  /* If you change the font-size make sure you change the line-height value as well - the usual ratio is around 1.5 (font-size x 1.5 = line-height) */
-  margin-bottom: 20px;
-  color: #333333;
+  line-height: 1.5em;
+  color: #000;
   font-family: 'Lato', Arial, Helvetica, sans-serif;
 }
 
-/* line 40, ../sass/typography.scss */
+/* line 9, ../sass/typography.scss */
 .f-caffe {
   font-family: 'cafe';
 }
 
-/* line 43, ../sass/typography.scss */
+/* line 12, ../sass/typography.scss */
 .f-cardenio {
   font-family: 'Cardenio Modern';
-}
-
-/* line 1, ../sass/components/_section.scss */
-section {
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-}
-
-/* line 1, ../sass/components/_header.scss */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-/* line 1, ../sass/components/_footer.scss */
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
 }

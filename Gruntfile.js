@@ -44,18 +44,18 @@ module.exports = function (grunt) {
 
     compass: {
       options: {
-        config: 'config.rb',
-        bundleExec: true,
-        force: true
+        config: 'config.rb'
       },
       dev: {
         options: {
-          environment: 'development'
+          environment: 'development',
+          config: 'config.rb'
         }
       },
       dist: {
         options: {
-          environment: 'production'
+          environment: 'production',
+          config: 'config.rb'
         }
       }
     },
