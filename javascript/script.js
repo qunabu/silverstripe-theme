@@ -28,12 +28,12 @@ $(function() {
     },
     Page : {
       pageFunction1:function() {
-        console.log('commonFunction2');
+        console.log('this function will be launch only on body.Page class ');
       }
     },
     HomePage : {
       pageFunction1:function() {
-        console.log('commonFunction2');
+        console.log('this function will be launch only on body.HomePage class');
       }
     },
     attach:function(section) {
