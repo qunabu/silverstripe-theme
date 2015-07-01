@@ -1,8 +1,8 @@
 <section>
-
-    <div class="content">
+    <article class="content">
         $Content
-    </div>
+    </article>
+  $Form
 </section>
 
-$Form
+
