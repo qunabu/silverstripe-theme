@@ -1,34 +1,39 @@
 var Qunabu = {}
 
 $(function() {
-  McMillan = {
+  Qunabu = {
     footer: {
       footerFunction1:function() {
-        console.log('footerFunction1')
+        console.log('footerFunction1');
       },
       footerFunction2:function() {
-        console.log('footerFunction2')
+        console.log('footerFunction2');
       }
     },
     header : {
       headerFunction1:function() {
-        console.log('headerFunction1')
+        console.log('headerFunction1');
       },
       headerFunction2:function() {
-        console.log('headerFunction2')
+        console.log('headerFunction2');
       }
     },
     common: {
       commonFunction1:function() {
-        console.log('commonFunction1')
+        console.log('commonFunction1');
       },
       commonFunction2:function() {
-        console.log('commonFunction2')
+        console.log('commonFunction2');
       }
     },
     Page : {
       pageFunction1:function() {
-
+        console.log('commonFunction2');
+      }
+    },
+    HomePage : {
+      pageFunction1:function() {
+        console.log('commonFunction2');
       }
     },
     attach:function(section) {
