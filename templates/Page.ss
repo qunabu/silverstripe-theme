@@ -17,6 +17,13 @@
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<link rel="shortcut icon" href="$ThemeDir/images/favicon.ico" />
+  <script type="text/javascript">
+    window.SilverStripe = {
+      baseUrl:'$BaseHref',
+      baseRelUrl:'$baseURL',
+      pageUrl:'$Link'
+    }
+  </script>
 </head>
 <body class="$ClassName">
 <% include Header %>

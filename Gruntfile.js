@@ -33,14 +33,13 @@ module.exports = function (grunt) {
       },
       ss: {
         files:['templates/{,**/}*.ss']
+      },
+      mysite: {
+        files:['../../mysite/{,**/}*.*']
       }
     },
 
-    shell: {
-      all: {
-        command: 'drush cache-clear theme-registry'
-      }
-    },
+
 
     compass: {
       options: {
