@@ -2,4 +2,4 @@
 
 </footer>
 
-<script src="//localhost:35729/livereload.js"></script>
+<% if $isDev %><script src="//localhost:35729/livereload.js"></script><% end_if %>
