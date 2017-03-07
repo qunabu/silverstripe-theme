@@ -3,6 +3,7 @@
 	"description": "The SilverStripe Qunabu Theme Boilerplate",
 	"require": {
 		"php": ">=5.5.0",
+		"composer/installers": "~1.0",
 		"silverstripe/cms": "3.x-dev",
 		"silverstripe/framework": "3.x-dev",
 		"silverstripe/reports": "3.x-dev",
