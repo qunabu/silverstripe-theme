@@ -2,10 +2,21 @@
 	"name": "qunabu/silverstripe-theme",
 	"type": "silverstripe-theme",
 	"description": "The SilverStripe Qunabu Theme Boilerplate",
+	"keywords": ["silverstripe", "theme"],
 	"require": {
-		"php": ">=5.5.1"
+		"php": ">=5.5.1",
+		"composer/installers": "*",
 	},
 	"require-dev": {
 		"phpunit/PHPUnit": "~4.8"
-	}
+	},
+	"extra": {
+		"installer-name": "qunabu",
+	},
+	"authors": [
+		{
+			"name": "Mateusz Wojczal",
+			"homepage": "http://qunabu.com"
+		}
+	]
 }
