@@ -3,7 +3,7 @@
 	"type": "silverstripe-theme",
 	"description": "The SilverStripe Qunabu Theme Boilerplate",
 	"require": {
-		"php": ">=5.5.0"
+		"php": ">=5.5.1"
 	},
 	"require-dev": {
 		"phpunit/PHPUnit": "~4.8"
