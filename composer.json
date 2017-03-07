@@ -5,13 +5,13 @@
 	"keywords": ["silverstripe", "theme"],
 	"require": {
 		"php": ">=5.5.1",
-		"composer/installers": "*",
+		"composer/installers": "*"
 	},
 	"require-dev": {
 		"phpunit/PHPUnit": "~4.8"
 	},
 	"extra": {
-		"installer-name": "qunabu",
+		"installer-name": "qunabu"
 	},
 	"authors": [
 		{
