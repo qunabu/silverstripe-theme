@@ -1,9 +1,9 @@
 {
 	"name": "qunabu/silverstripe-theme",
+	"type": "silverstripe-theme",
 	"description": "The SilverStripe Qunabu Theme Boilerplate",
 	"require": {
 		"php": ">=5.5.0",
-		"composer/installers": "~1.0"
 	},
 	"require-dev": {
 		"phpunit/PHPUnit": "~4.8"
