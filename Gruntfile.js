@@ -28,8 +28,8 @@ module.exports = function (grunt) {
         files: ['css/{,**/}*.css']
       },
       js: {
-        files: ['javascript/{,**/}*.js', '!javascript/{,**/}*.min.js'],
-        tasks: ['jshint', 'uglify:dev']
+        files: ['js/{,**/}*.js', '!js/{,**/}*.min.js'],
+        tasks: ['browserify', 'uglify:dist']
       },
       ss: {
         files:['templates/{,**/}*.ss']
@@ -66,37 +66,32 @@ module.exports = function (grunt) {
       all: ['javascript/{,**/}*.js', '!javascript/{,**/}*.min.js']
     },
 
-    uglify: {
-      dev: {
-        options: {
-          mangle: false,
-          compress: false,
-          beautify: true
-        },
+    browserify: {
+      dist: {
         files: [{
           expand: true,
           flatten: true,
-          cwd: 'javascript',
-          dest: 'javascript',
-          src: ['**/*.js', '!**/*.min.js'],
-          rename: function(dest, src) {
-            var folder = src.substring(0, src.lastIndexOf('/'));
-            var filename = src.substring(src.lastIndexOf('/'), src.length);
-            filename = filename.substring(0, filename.lastIndexOf('.'));
-            return dest + '/' + folder + filename + '.min.js';
-          }
-        }]
-      },
+          cwd: 'js/dev',
+          dest: 'js/build',
+          src: ['*.js']
+        }],
+        options: {
+          transform: [["babelify", { "presets": ["es2015"] }]]
+        }
+      }
+    },
+
+    uglify: {
       dist: {
         options: {
           mangle: true,
-          compress: true
+          compress: {}
         },
         files: [{
           expand: true,
           flatten: true,
-          cwd: 'javascript',
-          dest: 'javascript',
+          cwd: 'js/build',
+          dest: 'js/build',
           src: ['**/*.js', '!**/*.min.js'],
           rename: function(dest, src) {
             var folder = src.substring(0, src.lastIndexOf('/'));
@@ -109,6 +104,7 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-jshint');
