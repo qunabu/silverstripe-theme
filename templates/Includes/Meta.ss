@@ -10,20 +10,20 @@ $MetaTags(false)
 <![endif]-->
 <link rel="shortcut icon" href="$ThemeDir/images/favicon.ico" />
 <script type="text/javascript">
-  window.SilverStripe = SilverStripe || { 'settings': {}, 'behaviors': {}, 'themes': {}, 'locale': {} };
+  window.SilverStripe = window.SilverStripe || { 'settings': {}, 'behaviors': {}, 'themes': {}, 'locale': {} };
   window.SilverStripe.settings.baseUrl='$BaseHref';
   window.SilverStripe.settings.baseRelUrl='$baseURL';
-  window.SilverStripe.settings.pageUrl='$Link';'
+  window.SilverStripe.settings.pageUrl='$Link';
   window.SilverStripe.behaviors = {
     attach:function (context) {
       if (typeof context == 'undefined') {
         context = window;
       }
       for(var behavior in this) {
-        if (typeof this[all].attach == 'function') {
-          this[all].attach.call()
+        if (typeof this[behavior].attach == 'function') {
+          this[behavior].attach.call()
         }
-        this[all].attach.call(this[all], context, SilverStripe.setting);
+        this[behavior].attach.call(this[behavior], context, window.SilverStripe.settings);
       }
     }
   }
