@@ -15,18 +15,16 @@ $MetaTags(false)
   window.SilverStripe.settings.baseRelUrl='$baseURL';
   window.SilverStripe.settings.pageUrl='$Link';
   window.SilverStripe.behaviors = {
-    attach:function (context) {
+    attachBehaviors:function (context) {
       if (typeof context == 'undefined') {
         context = window;
       }
       for(var behavior in this) {
         if (typeof this[behavior].attach == 'function') {
-          this[behavior].attach.call()
+          this[behavior].attach.call(this[behavior], context, window.SilverStripe.settings);
         }
-        this[behavior].attach.call(this[behavior], context, window.SilverStripe.settings);
       }
     }
   }
-  document.addEventListener('DOMContentLoaded', window.SilverStripe.behaviors.attach.call(window.SilverStripe.behaviors));
-
+  document.addEventListener('DOMContentLoaded', window.SilverStripe.behaviors.attachBehaviors.call(window.SilverStripe.behaviors));
 </script>
