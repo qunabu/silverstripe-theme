@@ -1,8 +1,6 @@
 <% base_tag %>
 <title><% if $MetaTitle %>$MetaTitle<% else %>$Title<% end_if %> &raquo; $SiteConfig.Title</title>
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 $MetaTags(false)
 <% require themedCSS('layout') %>
 <!--[if lt IE 9]>
@@ -14,8 +12,12 @@ $MetaTags(false)
   window.SilverStripe.settings.baseUrl='$BaseHref';
   window.SilverStripe.settings.baseRelUrl='$baseURL';
   window.SilverStripe.settings.pageUrl='$Link';
+  window.SilverStripe.settings.themeDir='$ThemeDir';
   window.SilverStripe.behaviors = {
-    attachBehaviors:function (context) {
+    init:function () {
+      this.attachAll();
+    },
+    attachAll:function(context) {
       if (typeof context == 'undefined') {
         context = window;
       }
@@ -24,7 +26,14 @@ $MetaTags(false)
           this[behavior].attach.call(this[behavior], context, window.SilverStripe.settings);
         }
       }
+    },
+    dettachAll:function() {
+      for(var behavior in this) {
+        if (typeof this[behavior].dettach == 'function') {
+          this[behavior].dettach.call(this[behavior]);
+        }
+      }
     }
   }
-  document.addEventListener('DOMContentLoaded', window.SilverStripe.behaviors.attachBehaviors.call(window.SilverStripe.behaviors));
+  document.addEventListener('DOMContentLoaded', window.SilverStripe.behaviors.init.bind(window.SilverStripe.behaviors));
 </script>
