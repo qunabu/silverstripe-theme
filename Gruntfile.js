@@ -3,44 +3,6 @@
 module.exports = function (grunt) {
 
   grunt.initConfig({
-    watch: {
-      options: {
-        livereload: true
-      },
-      sass: {
-        files: ['sass/{,**/}*.{scss,sass}'],
-        tasks: ['compass:dev'],
-        options: {
-          livereload: false
-        }
-      },
-      registry: {
-        files: ['*.info', '{,**}/*.{php,inc}'],
-        tasks: ['shell'],
-        options: {
-          livereload: false
-        }
-      },
-      images: {
-        files: ['images/**']
-      },
-      css: {
-        files: ['css/{,**/}*.css']
-      },
-      js: {
-        files: ['js/{,**/}*.js', '!js/{,**/}*.min.js'],
-        tasks: ['browserify', 'uglify:dist']
-      },
-      ss: {
-        files:['templates/{,**/}*.ss']
-      },
-      mysite: {
-        files:['../../mysite/{,**/}*.*']
-      }
-    },
-
-
-
     compass: {
       options: {
         config: 'config.rb'
@@ -81,6 +43,14 @@ module.exports = function (grunt) {
       }
     },
 
+    autopolyfiller: {
+      for_all_browsers: {
+        files: {
+          'js/polyfill/polyfills.js': ['js/build/**/*.js'],
+        }
+      }
+    },
+
     uglify: {
       dist: {
         options: {
@@ -101,9 +71,45 @@ module.exports = function (grunt) {
           }
         }]
       }
+    },
+    watch: {
+      options: {
+        livereload: true
+      },
+      sass: {
+        files: ['sass/{,**/}*.{scss,sass}'],
+        tasks: ['compass:dev'],
+        options: {
+          livereload: false
+        }
+      },
+      registry: {
+        files: ['*.info', '{,**}/*.{php,inc}'],
+        tasks: ['shell'],
+        options: {
+          livereload: false
+        }
+      },
+      images: {
+        files: ['images/**']
+      },
+      css: {
+        files: ['css/{,**/}*.css']
+      },
+      js: {
+        files: ['js/{,**/}*.js', '!js/{,**/}*.min.js'],
+        tasks: ['browserify', 'autopolyfiller', 'uglify:dist']
+      },
+      ss: {
+        files:['templates/{,**/}*.ss']
+      },
+      mysite: {
+        files:['../../mysite/{,**/}*.*']
+      }
     }
   });
 
+  grunt.loadNpmTasks('grunt-autopolyfiller');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-compass');
@@ -112,7 +118,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('build', [
+    'browserify',
     'uglify:dist',
+    'autopolyfiller',
     'compass:dist',
     'jshint'
   ]);
