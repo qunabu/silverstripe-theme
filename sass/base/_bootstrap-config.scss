@@ -1,0 +1,38 @@
+
+
+/*----------  BOOTSTRAP OVERRIDES  ----------*/
+
+// GRID SETTINGS
+$grid-columns:               12 !default;
+
+$grid-gutter-widths: (
+  xs: 20px,
+  md: 30px,
+  lg: 40px
+) !default;
+
+
+// BREAKPOINTS
+$grid-breakpoints: (
+  xs: 0,
+  sm: 420px,  // iPhone 6/7plus portrait has 414x736
+  md: 740px,  // iPhone 6plus horizontal has 736, all tablets start with 768.
+  lg: 992px,
+  xl: 1400px,
+  xxl: 1672px // 1520px with margin 5% on each side
+) !default;
+
+// CONTAINER MAX-WIDTHS
+$container-max-widths: (
+  xs: 100%,
+  md: 90%,
+  xxl: 1520px
+) !default;
+
+// CONTAINER MARGINS
+$container-standard-margins: (
+  xs: 20px,
+  md: 5%,
+  max: auto
+) !default;
+

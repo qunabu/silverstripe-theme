@@ -9,7 +9,7 @@ module.exports = function (grunt) {
       },
       sass: {
         files: ['sass/{,**/}*.{scss,sass}'],
-        tasks: ['compass:dev'],
+        tasks: ['sass:dist','postcss'],
         options: {
           livereload: false
         }
@@ -39,23 +39,39 @@ module.exports = function (grunt) {
       }
     },
 
-
-
-    compass: {
+    sass: {
       options: {
-        config: 'config.rb'
-      },
-      dev: {
-        options: {
-          environment: 'development',
-          config: 'config.rb'
-        }
+        sourceMap: true
       },
       dist: {
-        options: {
-          environment: 'production',
-          config: 'config.rb'
+        files: {
+          'css/editor.css': 'sass/editor.scss',
+          'css/layout.css': 'sass/layout.scss',
+          'css/typography.css': 'sass/typography.scss'
         }
+      }
+    },
+
+    postcss: {
+      options: {
+        map: true, // inline sourcemaps
+
+        /*
+        // or
+        map: {
+          inline: false, // save all sourcemaps as separate files...
+          annotation: 'dist/css/maps/' // ...to the specified directory
+        },
+        */
+
+        processors: [
+          require('pixrem')(), // add fallbacks for rem units
+          require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
+          require('cssnano')() // minify the result
+        ]
+      },
+      dist: {
+        src: 'css/*.css'
       }
     },
 
@@ -110,10 +126,15 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-compass');
+  //grunt.loadNpmTasks('load-grunt-tasks');
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-postcss');
+
+  grunt.registerTask('default', ['sass']);
 
   grunt.registerTask('build', [
     'uglify:dist',

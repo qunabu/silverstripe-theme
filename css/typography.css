@@ -1,18 +1,25 @@
+/** defaulf values */
+/*
+//Single property
+html {
+  @include fluid-type(font-size, 320px, 1366px, 14px, 18px);
+}
+
+// Multiple properties with same values
+h1 {
+  @include fluid-type(padding-bottom padding-top, 20em, 70em, 2em, 4em);
+}
+*/
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin,latin-ext);
-/* line 2, ../sass/typography.scss */
 body, .typography {
   font-size: 13px;
   line-height: 1.5em;
   color: #000;
   font-family: 'Lato', Arial, Helvetica, sans-serif;
-}
-
-/* line 9, ../sass/typography.scss */
-.f-caffe {
-  font-family: 'cafe';
-}
-
-/* line 12, ../sass/typography.scss */
-.f-cardenio {
-  font-family: 'Cardenio Modern';
-}
+  font-size: 14px; }
+  @media screen and (min-width: 320px) {
+    body, .typography {
+      font-size: calc(14px + 4 * (100vw - 320px) / 1046); } }
+  @media screen and (min-width: 1366px) {
+    body, .typography {
+      font-size: 18px; } }

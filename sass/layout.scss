@@ -1,11 +1,15 @@
 //hello guys!
 
-@import "compass/reset";
-@import "compass/css3";
-@import "compass/css3/user-interface";
-
 //
 @import "base/common";
+@import "base/sanitize";
+@import "base/bootstrap-config"; // bootstrap overrides
+
+
+
+//@import "../node_modules/bootstrap/scss/bootstrap";
+@import "bootstrap/bootstrap-grid";
+@import "bootstrap/normalize";
 
 //
 @import "typography";
@@ -15,5 +19,9 @@
 @import "components/header";
 @import "components/footer";
 
+
 //
 @import "pages/homepage";
+
+body { background: green;}
+
