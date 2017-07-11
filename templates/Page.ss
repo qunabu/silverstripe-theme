@@ -4,16 +4,11 @@
 	<% include Meta %>
 </head>
 <body class="$ClassName">
-<% include Header %>
-<div class="main wrapper" role="main">
-  <h1>kjlfkjdss fdsdfdfd s  </h1>
-	<div class="inner typography line">
-		$Layout
-	</div>
-</div>
-<% include Footer %>
-
-
-
-</body>
+  <% include Header %>
+  <main class="main wrapper" role="main">
+    $Layout
+  </main>
+  <% include Footer %>
+  <% include JavaScript %>
+  </body>
 </html>

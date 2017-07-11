@@ -10,3 +10,4 @@
   <% include Navigation %>
 
 </header>
+<div id="main-loader"></div>

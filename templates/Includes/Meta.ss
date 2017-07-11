@@ -2,17 +2,46 @@
 <title><% if $MetaTitle %>$MetaTitle<% else %>$Title<% end_if %> &raquo; $SiteConfig.Title</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 $MetaTags(false)
-<% require themedCSS('layout') %>
+<% if $isDev %>
+  <% require themedCSS('layout') %>
+<% end_if %>
 <!--[if lt IE 9]>
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <link rel="shortcut icon" href="$ThemeDir/images/favicon.png" />
+<style type="text/css">
+  #main-loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    z-index: 9998;
+    background: rgba(255, 255, 255, 0.9);
+    -webkit-transition: opacity 0.35s ease-out, visibility 0.35s linear;
+    transition: opacity 0.35s ease-out, visibility 0.35s linear;
+    visibility: visible;
+    will-change: opacity; }
+  #main-loader:after {
+    content: 'loading'; }
+</style>
 <script type="text/javascript">
   window.SilverStripe = window.SilverStripe || { 'settings': {}, 'behaviors': {}, 'themes': {}, 'locale': {} };
   window.SilverStripe.settings.baseUrl='$BaseHref';
   window.SilverStripe.settings.baseRelUrl='$baseURL';
   window.SilverStripe.settings.pageUrl='$Link';
   window.SilverStripe.settings.themeDir = '{$ThemeDir}';
+  window.SilverStripe.isLive=<% if $IsDev %>false<% else %>true<% end_if %>;
+  window.SilverStripe.isDev=<% if $IsDev %>true<% else %>false<% end_if %>;
   window.SilverStripe.loadScript = function(files, after) {
     var _this=this;
     _this.files = files;
@@ -45,6 +74,9 @@ $MetaTags(false)
     else _this.after();
   }
   window.SilverStripe.behaviors = {
+    init:function() {
+      this.attachAll();
+    },
     attached:{},
     attachAll:function (context) {
       if (typeof context == 'undefined') {
@@ -69,6 +101,6 @@ $MetaTags(false)
       }
     }
   }
-  document.addEventListener('DOMContentLoaded', window.SilverStripe.behaviors.attachAll.call(window.SilverStripe.behaviors));
+  if (SilverStripe.isDev) { document.addEventListener('DOMContentLoaded', window.SilverStripe.behaviors.init.bind(window.SilverStripe.behaviors)); }
 
 </script>

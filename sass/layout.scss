@@ -18,10 +18,12 @@
 @import "components/section";
 @import "components/header";
 @import "components/footer";
+@import "components/lazyload";
+@import "components/loader";
 
 
 //
 @import "pages/homepage";
 
-body { background: green;}
+body { background: white;}
 
