@@ -56,6 +56,7 @@ gulp.task('svgo', function() {
 gulp.task('es6', function() {
   return gulp.src('javascript/es6/entry.js')
     .pipe(webpackStream({
+      entry: ['babel-polyfill','./javascript/es6/entry.js'],
       output: {
         filename: 'Z_bundle.js'
       },
