@@ -12,13 +12,13 @@ var rename = require('gulp-rename');
 var gutil = require('gulp-util');
 
 var SASS_FILES = './sass/**/*.scss';
-var JS_FILES = ['js/lib/{,**/}*.js', '!js/lib/{,**/}*.min.js'];
-var JS_ES6_FILES = ['js/es6/{,**/}*.js', '!js/es6/{,**/}*.min.js'];
-var JS_DEST = 'js/live';
+var JS_FILES = ['javascript/lib/{,**/}*.js', '!javascript/lib/{,**/}*.min.js'];
+var JS_ES6_FILES = ['javascript/es6/{,**/}*.js', '!javascript/es6/{,**/}*.min.js'];
+var JS_DEST = 'javascript/live';
 
 var FILES_TO_RELOAD = [ //only js in lib folder
   '../../mysite/{,**/}*.*',
-  'js/lib/{,**/}*.js', '!js/lib/{,**/}*.min.js',
+  'javascript/lib/{,**/}*.js', '!javascript/lib/{,**/}*.min.js',
   'templates/{,**/}*.ss',
   'images/**'
 ]
@@ -54,7 +54,7 @@ gulp.task('svgo', function() {
 
 
 gulp.task('es6', function() {
-  return gulp.src('js/es6/entry.js')
+  return gulp.src('javascript/es6/entry.js')
     .pipe(webpackStream({
       output: {
         filename: 'Z_bundle.js'
@@ -66,13 +66,13 @@ gulp.task('es6', function() {
             loader: "babel-loader",
             query:
             {
-              presets:['ES2015']
+              presets:['es2015']
             }
           }
         ]
       }
     }))
-    .pipe(gulp.dest('js/lib/'))
+    .pipe(gulp.dest('javascript/lib/'))
 });
 
 gulp.task('live-scripts', function() {
