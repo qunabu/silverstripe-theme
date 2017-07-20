@@ -10,21 +10,22 @@ var sort = require('gulp-sort');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var gutil = require('gulp-util');
+var imagemin = require('gulp-imagemin');
 
-var SASS_FILES = './sass/**/*.scss';
-var JS_FILES = ['js/lib/{,**/}*.js', '!js/lib/{,**/}*.min.js'];
-var JS_ES6_FILES = ['js/es6/{,**/}*.js', '!js/es6/{,**/}*.min.js'];
-var JS_DEST = 'js/live';
+var SASS_FILES = ['./sass/**/*.scss', '!./sass/bootstrap/*'];
+var JS_FILES = ['javascript/lib/{,**/}*.js', '!javascript/lib/{,**/}*.min.js'];
+var JS_ES6_FILES = ['javascript/es6/{,**/}*.js', '!javascript/es6/{,**/}*.min.js'];
+var JS_DEST = 'javascript/live';
 
 var FILES_TO_RELOAD = [ //only js in lib folder
   '../../mysite/{,**/}*.*',
-  'js/lib/{,**/}*.js', '!js/lib/{,**/}*.min.js',
+  'javascript/lib/{,**/}*.js', '!javascript/lib/{,**/}*.min.js',
   'templates/{,**/}*.ss',
   'images/**'
 ]
 
 /** TODO
- * 1. task to minify images
+ * 1. require('pixrem')(), // add fallbacks for rem units
  */
 
 gulp.task('sass', [], function() {
@@ -46,6 +47,18 @@ gulp.task('minify-css', function() {
     .pipe(gulp.dest('css'))
 });
 
+gulp.task('compress-images', function() {
+  return gulp.src(['images/**/*', '!images/**/*.svg'])
+    .pipe(imagemin())
+    .pipe(gulp.dest('images'))
+});
+
+gulp.task('compress-assets', function() {
+  return gulp.src(['../../assets/**/*.{png,gif,jpg,jpeg}'])
+    .pipe(imagemin())
+    .pipe(gulp.dest('images'))
+});
+
 gulp.task('svgo', function() {
   return gulp.src('images/*.svg')
     .pipe(svgo())
@@ -54,7 +67,7 @@ gulp.task('svgo', function() {
 
 
 gulp.task('es6', function() {
-  return gulp.src('js/es6/entry.js')
+  return gulp.src('javascript/es6/entry.js')
     .pipe(webpackStream({
       output: {
         filename: 'Z_bundle.js'
@@ -71,8 +84,8 @@ gulp.task('es6', function() {
           }
         ]
       }
-    }))
-    .pipe(gulp.dest('js/lib/'))
+    }).on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); this.emit('end'); })
+  ).pipe(gulp.dest('javascript/lib/'))
 });
 
 gulp.task('live-scripts', function() {
@@ -97,4 +110,13 @@ gulp.task('dev-watch', ['sass'], function() {
 gulp.task('default', ['dev-watch']);
 
 // LIVE TASK
-gulp.task('deploy-live', ['es6', 'live-scripts', 'sass', 'minify-css']);
+gulp.task('deploy-live', ['es6', 'live-scripts', 'sass', 'minify-css', 'compress-images']);
+
+
+var sassJson = require('gulp-sass-json');
+gulp.task('sass-json', function () {
+  return gulp
+    .src('./sass/layout.scss')
+    .pipe(sassJson())
+    .pipe(gulp.dest('./cssVars'));
+});
