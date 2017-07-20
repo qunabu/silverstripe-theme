@@ -142,6 +142,7 @@ abbr[title] {
   /* 1 */
   text-decoration: underline;
   /* 2 */
+  -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
   /* 2 */ }
 
@@ -1615,6 +1616,7 @@ a:hover {
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted; }
 
 b,
@@ -1789,5 +1791,20 @@ body, .typography {
     body, .typography {
       font-size: 18px; } }
 
+img:not(.lazyload) {
+  -webkit-transition: opacity 1s ease-out;
+  transition: opacity 1s ease-out;
+  opacity: 1; }
+
+img.lazyloaded {
+  opacity: 1; }
+
+img.lazyload {
+  opacity: 0; }
+
+#main-loader {
+  visibility: hidden;
+  opacity: 0; }
+
 body {
-  background: green; }
+  background: white; }

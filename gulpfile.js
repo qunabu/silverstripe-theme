@@ -12,6 +12,7 @@ var rename = require('gulp-rename');
 var gutil = require('gulp-util');
 var imagemin = require('gulp-imagemin');
 
+
 var SASS_FILES = ['./sass/**/*.scss', '!./sass/bootstrap/*'];
 var JS_FILES = ['javascript/lib/{,**/}*.js', '!javascript/lib/{,**/}*.min.js'];
 var JS_ES6_FILES = ['javascript/es6/{,**/}*.js', '!javascript/es6/{,**/}*.min.js'];
@@ -69,6 +70,7 @@ gulp.task('svgo', function() {
 gulp.task('es6', function() {
   return gulp.src('javascript/es6/entry.js')
     .pipe(webpackStream({
+      entry: ['babel-polyfill','./javascript/es6/entry.js'],
       output: {
         filename: 'Z_bundle.js'
       },
@@ -79,13 +81,15 @@ gulp.task('es6', function() {
             loader: "babel-loader",
             query:
             {
-              presets:['ES2015']
+              presets:['es2015']
             }
           }
         ]
       }
+
     }).on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); this.emit('end'); })
   ).pipe(gulp.dest('javascript/lib/'))
+
 });
 
 gulp.task('live-scripts', function() {
