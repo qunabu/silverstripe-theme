@@ -1,5 +1,8 @@
 /** defaulf values */
-@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
+
+@import "_bootstrap-config";
+
+@mixin fluid-type-min-max($properties, $min-vw, $max-vw, $min-value, $max-value) {
   @each $property in $properties {
     #{$property}: $min-value;
   }
@@ -19,6 +22,11 @@
 
 @function strip-unit($value) {
   @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($properties, $min-value, $max-value) {
+
+  @include fluid-type-min-max($properties, map-get($grid-breakpoints, sm), map-get($grid-breakpoints, xxl), $min-value, $max-value)
 }
 
 /*

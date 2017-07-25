@@ -11,9 +11,10 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var gutil = require('gulp-util');
 var imagemin = require('gulp-imagemin');
+var sourcemaps = require('gulp-sourcemaps');
 
 
-var SASS_FILES = ['./sass/**/*.scss', '!./sass/bootstrap/*'];
+var SASS_FILES = ['sass/**/*.scss'];
 var JS_FILES = ['javascript/lib/{,**/}*.js', '!javascript/lib/{,**/}*.min.js'];
 var JS_ES6_FILES = ['javascript/es6/{,**/}*.js', '!javascript/es6/{,**/}*.min.js'];
 var JS_DEST = 'javascript/live';
@@ -72,16 +73,19 @@ gulp.task('es6', function() {
     .pipe(webpackStream({
       entry: ['babel-polyfill','./javascript/es6/entry.js'],
       output: {
-        filename: 'Z_bundle.js'
+        filename: 'bundle.js'
       },
+      compact: false,
+      devtool: 'eval', // 'source-map' in production !!
       module: {
         loaders: [
           {
             test: /\.js?$/,
+            exclude: /node_modules/,
             loader: "babel-loader",
             query:
             {
-              presets:['es2015']
+              presets:[['es2015', {cacheDirectory:true}]]
             }
           }
         ]

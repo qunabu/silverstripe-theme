@@ -5,11 +5,10 @@
 @import "base/sanitize";
 @import "base/bootstrap-config"; // bootstrap overrides
 
-
-
 //@import "../node_modules/bootstrap/scss/bootstrap";
-@import "bootstrap/bootstrap-grid";
-@import "bootstrap/normalize";
+@import "../node_modules/bootstrap/scss/bootstrap-grid";
+@import "../node_modules/bootstrap/scss/utilities/flex";
+@import "../node_modules/bootstrap/scss/normalize";
 
 //
 @import "typography";
@@ -25,5 +24,4 @@
 //
 @import "pages/homepage";
 
-body { background: white;}
 
