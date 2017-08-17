@@ -73,7 +73,7 @@ gulp.task('es6', function() {
     .pipe(webpackStream({
       entry: ['babel-polyfill','./javascript/es6/entry.js'],
       output: {
-        filename: 'bundle.js'
+        filename: 'z_bundle.js'
       },
       compact: false,
       devtool: 'eval', // 'source-map' in production !!
