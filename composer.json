@@ -4,7 +4,6 @@
 	"description": "The SilverStripe Qunabu Theme Boilerplate",
 	"keywords": ["silverstripe", "theme"],
 	"require": {
-		"php": ">=5.5.1",
 		"composer/installers": "*"
 	},
 	"require-dev": {
