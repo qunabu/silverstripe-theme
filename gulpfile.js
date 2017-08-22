@@ -120,11 +120,3 @@ gulp.task('default', ['dev-watch']);
 // LIVE TASK
 gulp.task('deploy-live', ['es6', 'live-scripts', 'sass', 'minify-css', 'compress-images']);
 
-
-var sassJson = require('gulp-sass-json');
-gulp.task('sass-json', function () {
-  return gulp
-    .src('./sass/layout.scss')
-    .pipe(sassJson())
-    .pipe(gulp.dest('./cssVars'));
-});
