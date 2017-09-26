@@ -1,10 +1,22 @@
-img:not(.lazyload) {
+img:not(.lazyload),
+img:not(.lazyloaded),
+img:not(.lazyloading) {
   transition: opacity 1s ease-out;
   opacity: 1;
 }
+
 img.lazyloaded {
   opacity: 1;
+  transition: opacity 1s ease-out;
 }
-img.lazyload {
+
+img.lazyload,
+img.lazyloading {
   opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+img[data-sizes="auto"] { 
+  display: block; 
+  width: 100%; 
 }
