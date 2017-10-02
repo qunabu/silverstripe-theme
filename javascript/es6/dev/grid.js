@@ -12,7 +12,8 @@ class Grid {
   attach() {
     let self = this;
     window.addEventListener('keydown', function(e) {
-      if (e.key === 'g') {
+      var tagName =  e.target.tagName.toLowerCase();
+      if (e.key === 'g' && tagName != 'input' && tagName != 'textarea' ) {
         self.toggleGrid()
       }
     })
