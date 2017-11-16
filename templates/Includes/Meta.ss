@@ -10,6 +10,9 @@ $MetaTags(false)
 <![endif]-->
 <link rel="shortcut icon" href="$ThemeDir/images/favicon.png" />
 <style type="text/css">
+  body {
+    overflow:hidden;
+  }
   #main-loader {
     position: fixed;
     width: 100%;
@@ -26,13 +29,13 @@ $MetaTags(false)
     -ms-flex-pack: center;
     justify-content: center;
     z-index: 9998;
-    background: rgba(255, 255, 255, 0.9);
-    -webkit-transition: opacity 0.35s ease-out, visibility 0.35s linear;
-    transition: opacity 0.35s ease-out, visibility 0.35s linear;
+    background: rgba(42, 141, 133, 1);
+    -webkit-transition: opacity 0.35s ease-out 0.1s, visibility 0.35s linear 0.1s;
+    transition: opacity 0.35s ease-out 0.1s, visibility 0.35s linear 0.1s;
     visibility: visible;
     will-change: opacity; }
   #main-loader:after {
-    content: 'loading'; }
+    content: ''; }
 </style>
 <script type="text/javascript">
   window.SilverStripe = window.SilverStripe || { 'settings': {}, 'behaviors': {}, 'themes': {}, 'locale': {} };
