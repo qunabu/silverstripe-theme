@@ -5,5 +5,5 @@ body, .typography {
     line-height: 1.5em;
     color: #000;
     font-family: 'Lato', Arial, Helvetica, sans-serif;
-    @include fluid-type(font-size, 320px, 1366px, 14px, 18px);
+    @include fluid-type(font-size, 14px, 18px);
 }
