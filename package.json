@@ -1,6 +1,6 @@
 {
   "name": "qunabu-silverstripe-theme",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Qunabu SilverStripe Theme",
   "main": "Gruntfile.js",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "author": "Qunabu.com",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "gulp": "^3.9.1",
@@ -27,17 +27,15 @@
     "gulp-sort": "^2.0.0",
     "gulp-svgo": "*",
     "gulp-uglify": "^3.0.0",
-    "gulp-util": "^3.0.8"
-  },
-  "dependencies": {
+    "gulp-util": "^3.0.8",
     "autoprefixer": "7.1.1",
     "babel-core": "^6.25.0",
     "babel-loader": "7.1.1",
-    "babel-preset-es2015": "^6.24.1",
+    "bootstrap": "4.0.0-alpha.6",
     "cssnano": "^3.10.0",
+    "gulp-sourcemaps": "^2.6.1",
     "pixrem": "^3.0.2",
     "webpack": "^3.1.0",
-    "webpack-stream": "^3.2.0",
-    "bootstrap": "4.0.0-alpha.6"
+    "webpack-stream": "^3.2.0"
   }
 }
