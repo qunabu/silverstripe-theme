@@ -12,6 +12,8 @@ $grid-gutter-widths: (
 ) !default;
 
 
+
+
 // BREAKPOINTS
 $grid-breakpoints: (
   xs: 0,
@@ -36,3 +38,8 @@ $container-standard-margins: (
   max: auto
 ) !default;
 
+$v: export('javascript/config/grid-breakpoints.json', $grid-breakpoints);
+$v: export('javascript/config/grid-columns.json', $grid-columns);
+$v: export('javascript/config/grid-gutter-widths.json', $grid-gutter-widths);
+$v: export('javascript/config/container-max-widths.json', $container-max-widths);
+$v: export('javascript/config/container-standard-margins.json', $container-standard-margins);

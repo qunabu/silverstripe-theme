@@ -12,11 +12,12 @@ var rename = require('gulp-rename');
 var gutil = require('gulp-util');
 var imagemin = require('gulp-imagemin');
 var sourcemaps = require('gulp-sourcemaps');
+var export_sass = require('node-sass-export');
 
 
 var SASS_FILES = ['sass/**/*.scss'];
 var JS_FILES = ['javascript/lib/{,**/}*.js', '!javascript/lib/{,**/}*.min.js'];
-var JS_ES6_FILES = ['javascript/es6/{,**/}*.js', '!javascript/es6/{,**/}*.min.js'];
+var JS_ES6_FILES = ['javascript/es6/{,**/}*.js', '!javascript/es6/{,**/}*.min.js', 'javascript/config/*'];
 var JS_DEST = 'javascript/live';
 
 var FILES_TO_RELOAD = [ //only js in lib folder
@@ -33,7 +34,11 @@ var FILES_TO_RELOAD = [ //only js in lib folder
 gulp.task('sass', [], function() {
   return gulp.src(SASS_FILES)
     .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass(
+      {
+        functions: export_sass('.')
+      }
+    ).on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 2 versions'],
       cascade: false
