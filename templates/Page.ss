@@ -4,10 +4,14 @@
 	<% include Meta %>
 </head>
 <body class="$ClassName">
-  <% include Header %>
-  <main class="main wrapper" role="main">
-    $Layout
-  </main>
+  <div id="barba-wrapper">
+    <div class="barba-container">
+      <% include Header %>
+      <main class="main wrapper" role="main">
+        $Layout
+      </main>
+    </div>
+  </div>
   <% include Footer %>
   <% include JavaScript %>
   </body>
