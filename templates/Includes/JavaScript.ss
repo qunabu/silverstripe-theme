@@ -1,6 +1,6 @@
 <% if $IsDev %>
   <% loop JavaScriptLibFiles %>
-    <script src="{$ThemeDir}/javascript/lib/{$File}"></script>
+    <script src="{$Top.ThemeDir}/javascript/lib/{$File}"></script>
   <% end_loop %>
   <script>
     (function() {
@@ -23,4 +23,3 @@
     } )
   </script>
 <% end_if %>
-
