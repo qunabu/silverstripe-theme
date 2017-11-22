@@ -13,6 +13,7 @@ var gutil = require('gulp-util');
 var imagemin = require('gulp-imagemin');
 var sourcemaps = require('gulp-sourcemaps');
 var export_sass = require('node-sass-export');
+var dedupe = require('gulp-dedupe');
 
 
 var SASS_FILES = ['sass/**/*.scss'];
@@ -106,6 +107,7 @@ gulp.task('es6', function() {
 gulp.task('live-scripts', function() {
   return gulp.src(JS_FILES)
     .pipe(sort())
+    .pipe(dedupe())
     .pipe(concat('scripts.js'))
     .pipe(gulp.dest(JS_DEST))
     .pipe(rename('scripts.min.js'))
