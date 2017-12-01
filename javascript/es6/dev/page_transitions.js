@@ -92,6 +92,13 @@ class PageTransitions {
     attach() {
       console.log('PageTransitions hi')
       Barba.Pjax.start();
+        
+      /** replace body class on realod */  
+      Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container, newPageRawHTML) {
+        var response = newPageRawHTML.replace(/(<\/?)body( .+?)?>/gi, '$1notbody$2>', newPageRawHTML)
+        var bodyClasses = $(response).filter('notbody').attr('class')
+        $('body').attr('class', bodyClasses)
+      })
     }   
   }
   
