@@ -2,6 +2,7 @@
 import Grid from './dev/grid';
 import PageTransitions from './dev/page_transitions';
 import Body from './dev/body';
+import Components from './components/Components';
 
 /** attaching behaviors to global object */
 window.SilverStripe.behaviors.Grid = new Grid();
