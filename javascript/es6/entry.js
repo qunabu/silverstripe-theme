@@ -7,4 +7,6 @@ import Body from './dev/body';
 window.SilverStripe.behaviors.Grid = new Grid();
 window.SilverStripe.behaviors.PageTransitions = new PageTransitions();
 window.SilverStripe.behaviors.Body = new Body();
+window.SilverStripe.behaviors.Components = new Components();
+//window.SilverStripe.behaviors.Components.register('realization-map', MapComponent);
 
