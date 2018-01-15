@@ -14,7 +14,13 @@ export default class Components {
 
         elementList.forEach(element => {
             let data = $(element).data();
-
+            
+            if (data.attached) {
+                return 
+            } else {
+                $(element).data('attached', true);
+            }
+                      
             /** FIXME 
              * potential memory leak 
              * find a way to remove elements out of DOM
