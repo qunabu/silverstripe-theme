@@ -17,7 +17,7 @@
   </svg>
 </div>
 
-<header class="header" role="banner">
+<header class="header" role="banner" data-component="header">
 
   <a href="$BaseHref" class="brand" rel="home">
     <h1>$SiteConfig.Title</h1>
