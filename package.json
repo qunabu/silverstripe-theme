@@ -2,7 +2,7 @@
   "name": "qunabu-silverstripe-theme",
   "version": "1.0.0",
   "description": "Qunabu SilverStripe Theme",
-  "main": "Gruntfile.js",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

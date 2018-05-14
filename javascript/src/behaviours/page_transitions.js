@@ -29,6 +29,8 @@ var FadeTransition = Barba.BaseTransition.extend({
                 behaviors.attached[behavior] = false;
             }
       }
+
+      $('body').addClass('loading');
   
       return $(this.oldContainer).animate({ opacity: 0 }).promise();
     },
@@ -69,6 +71,9 @@ var FadeTransition = Barba.BaseTransition.extend({
                 behaviors.attached[behavior] = true;
             }
       }
+      
+
+      $('body').removeClass('loading');
     }
   });
   
@@ -87,13 +92,48 @@ var FadeTransition = Barba.BaseTransition.extend({
 
 class PageTransitions {
     constructor() {
-      
+      this.once = true;
     }
     attach() {
       Barba.Pjax.start();
+
+        if (SilverStripe.isDev) {
+          Barba.Utils.xhrTimeout = 15000;
+        }
+        Barba.Pjax.start();
+       
+        Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container, newPageRawHTML) {
+            var response = newPageRawHTML.replace(/(<\/?)body( .+?)?>/gi, '$1notbody$2>', newPageRawHTML)
+            var bodyClasses = $(response).filter('notbody').attr('class')
+            $('body').attr('class', bodyClasses);
+
+            $(container).find('script').each(function() {
+              if (this.type == 'application/ld+json') {
+                return;
+              }
+              try {
+                eval(this.innerHTML)
+              } catch(error) {
+                console.error(error)
+              }
+            });
+
+            var behaviors = window.SilverStripe.behaviors;
+            for(var behavior in behaviors) {
+                var context = behaviors[behavior];
+
+                  if (typeof behaviors[behavior].attach == 'function' && behaviors[behavior].once != true) {
+                      behaviors[behavior].attach.call(behaviors[behavior], context, SilverStripe.settings)
+                      behaviors.attached[behavior] = true;
+                  }
+      
+      
+            }
+        })
     }   
   }
   
 export default PageTransitions;
 
 window.SilverStripe.behaviors.PageTransitions = new PageTransitions();
+  
