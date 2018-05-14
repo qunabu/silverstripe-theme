@@ -6,3 +6,8 @@
 .sass-cache/*
 node_modules
 node_modules/*
+package-lock.json
+
+## those files should be build by CI if its possible
+javascript/build/*
+css/*

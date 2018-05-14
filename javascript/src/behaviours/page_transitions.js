@@ -25,7 +25,7 @@ var FadeTransition = Barba.BaseTransition.extend({
       for(var behavior in behaviors) {
           var context = behaviors[behavior];
             if (typeof behaviors[behavior].dettach == 'function' && behaviors.attached[behavior]) {
-                behaviors[behavior].dettach.call(behaviors[behavior], context, SilverStripe.settings)
+                behaviors[behavior].dettach.call(behaviors[behavior], context, SilverStripe.settings);
                 behaviors.attached[behavior] = false;
             }
       }
@@ -65,7 +65,7 @@ var FadeTransition = Barba.BaseTransition.extend({
       for(var behavior in behaviors) {
           var context = behaviors[behavior];
             if (typeof behaviors[behavior].reattach == 'function') {
-                behaviors[behavior].reattach.call(behaviors[behavior], context, SilverStripe.settings)
+                behaviors[behavior].reattach.call(behaviors[behavior], context, SilverStripe.settings);
                 behaviors.attached[behavior] = true;
             }
       }
@@ -90,11 +90,10 @@ class PageTransitions {
       
     }
     attach() {
-      console.log('PageTransitions hi')
       Barba.Pjax.start();
     }   
   }
   
-  export default PageTransitions;
+export default PageTransitions;
 
-  
+window.SilverStripe.behaviors.PageTransitions = new PageTransitions();

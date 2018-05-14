@@ -1,14 +1,9 @@
-//hello guys!
+//hello QUNABU guys!
 
 //
 @import "base/common";
 @import "base/sanitize";
-@import "base/bootstrap-config"; // bootstrap overrides
-
-//@import "../node_modules/bootstrap/scss/bootstrap";
-@import "../node_modules/bootstrap/scss/bootstrap-grid";
-@import "../node_modules/bootstrap/scss/utilities/flex";
-@import "../node_modules/bootstrap/scss/normalize";
+@import "base/bootstrap"; // bootstrap & its overrides
 
 //
 @import "typography";
