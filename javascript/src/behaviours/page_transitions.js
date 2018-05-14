@@ -103,8 +103,8 @@ class PageTransitions {
         Barba.Pjax.start();
        
         Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container, newPageRawHTML) {
-            var response = newPageRawHTML.replace(/(<\/?)body( .+?)?>/gi, '$1notbody$2>', newPageRawHTML)
-            var bodyClasses = $(response).filter('notbody').attr('class')
+            var response = newPageRawHTML.replace(/(<\/?)body( .+?)?>/gi, '$1notbody$2>', newPageRawHTML);
+            var bodyClasses = $(response).filter('notbody').attr('class');
             $('body').attr('class', bodyClasses);
 
             $(container).find('script').each(function() {
@@ -112,9 +112,9 @@ class PageTransitions {
                 return;
               }
               try {
-                eval(this.innerHTML)
+                eval(this.innerHTML);
               } catch(error) {
-                console.error(error)
+                console.error(error);
               }
             });
 
@@ -123,13 +123,13 @@ class PageTransitions {
                 var context = behaviors[behavior];
 
                   if (typeof behaviors[behavior].attach == 'function' && behaviors[behavior].once != true) {
-                      behaviors[behavior].attach.call(behaviors[behavior], context, SilverStripe.settings)
+                      behaviors[behavior].attach.call(behaviors[behavior], context, SilverStripe.settings);
                       behaviors.attached[behavior] = true;
                   }
       
       
             }
-        })
+        });
     }   
   }
   

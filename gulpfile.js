@@ -9,7 +9,10 @@ var imagemin = require('gulp-imagemin');
 var sourcemaps = require('gulp-sourcemaps');
 var export_sass = require('node-sass-export');
 var browserSync = require('browser-sync');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+var rename = require('gulp-rename');
+
+
 
 
 var SASS_FILES = ['sass/**/*.scss'];

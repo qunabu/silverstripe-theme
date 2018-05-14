@@ -27,6 +27,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-clean-css": "*",
     "gulp-imagemin": "^3.3.0",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "*",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-svgo": "*",
