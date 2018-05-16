@@ -34,6 +34,7 @@
     "gulp-sourcemaps": "^2.6.1",
     "gulp-svgo": "*",
     "gulp-util": "^3.0.8",
+    "lazysizes": "^4.0.2",
     "jquery": "^3.3.1",
     "json-loader": "^0.5.7",
     "node-sass-export": "0.0.2",
