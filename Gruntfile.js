@@ -3,44 +3,6 @@
 module.exports = function (grunt) {
 
   grunt.initConfig({
-    watch: {
-      options: {
-        livereload: true
-      },
-      sass: {
-        files: ['sass/{,**/}*.{scss,sass}'],
-        tasks: ['compass:dev'],
-        options: {
-          livereload: false
-        }
-      },
-      registry: {
-        files: ['*.info', '{,**}/*.{php,inc}'],
-        tasks: ['shell'],
-        options: {
-          livereload: false
-        }
-      },
-      images: {
-        files: ['images/**']
-      },
-      css: {
-        files: ['css/{,**/}*.css']
-      },
-      js: {
-        files: ['javascript/{,**/}*.js', '!javascript/{,**/}*.min.js'],
-        tasks: ['jshint', 'uglify:dev']
-      },
-      ss: {
-        files:['templates/{,**/}*.ss']
-      },
-      mysite: {
-        files:['../../mysite/{,**/}*.*']
-      }
-    },
-
-
-
     compass: {
       options: {
         config: 'config.rb'
@@ -66,37 +28,40 @@ module.exports = function (grunt) {
       all: ['javascript/{,**/}*.js', '!javascript/{,**/}*.min.js']
     },
 
-    uglify: {
-      dev: {
-        options: {
-          mangle: false,
-          compress: false,
-          beautify: true
-        },
+    browserify: {
+      dist: {
         files: [{
           expand: true,
           flatten: true,
-          cwd: 'javascript',
-          dest: 'javascript',
-          src: ['**/*.js', '!**/*.min.js'],
-          rename: function(dest, src) {
-            var folder = src.substring(0, src.lastIndexOf('/'));
-            var filename = src.substring(src.lastIndexOf('/'), src.length);
-            filename = filename.substring(0, filename.lastIndexOf('.'));
-            return dest + '/' + folder + filename + '.min.js';
-          }
-        }]
-      },
+          cwd: 'js/dev',
+          dest: 'js/build',
+          src: ['*.js']
+        }],
+        options: {
+          transform: [["babelify", { "presets": ["es2015"] }]]
+        }
+      }
+    },
+
+    autopolyfiller: {
+      for_all_browsers: {
+        files: {
+          'js/polyfill/polyfills.js': ['js/build/**/*.js'],
+        }
+      }
+    },
+
+    uglify: {
       dist: {
         options: {
           mangle: true,
-          compress: true
+          compress: {}
         },
         files: [{
           expand: true,
           flatten: true,
-          cwd: 'javascript',
-          dest: 'javascript',
+          cwd: 'js/build',
+          dest: 'js/build',
           src: ['**/*.js', '!**/*.min.js'],
           rename: function(dest, src) {
             var folder = src.substring(0, src.lastIndexOf('/'));
@@ -106,9 +71,46 @@ module.exports = function (grunt) {
           }
         }]
       }
+    },
+    watch: {
+      options: {
+        livereload: true
+      },
+      sass: {
+        files: ['sass/{,**/}*.{scss,sass}'],
+        tasks: ['compass:dev'],
+        options: {
+          livereload: false
+        }
+      },
+      registry: {
+        files: ['*.info', '{,**}/*.{php,inc}'],
+        tasks: ['shell'],
+        options: {
+          livereload: false
+        }
+      },
+      images: {
+        files: ['images/**']
+      },
+      css: {
+        files: ['css/{,**/}*.css']
+      },
+      js: {
+        files: ['js/{,**/}*.js', '!js/{,**/}*.min.js'],
+        tasks: ['browserify', 'autopolyfiller', 'uglify:dist']
+      },
+      ss: {
+        files:['templates/{,**/}*.ss']
+      },
+      mysite: {
+        files:['../../mysite/{,**/}*.*']
+      }
     }
   });
 
+  grunt.loadNpmTasks('grunt-autopolyfiller');
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -116,7 +118,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('build', [
+    'browserify',
     'uglify:dist',
+    'autopolyfiller',
     'compass:dist',
     'jshint'
   ]);
